@@ -1,33 +1,34 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lab 14 - JavaScript Calculator</title>
-  <link rel="stylesheet" href="starter-styles.css">
-</head>
-<body>
-  <div class="calculator">
-    <h1>JavaScript Calculator</h1>
-    
-    <div class="inputs">
-      <input type="number" id="num1" placeholder="First number">
-      <input type="number" id="num2" placeholder="Second number">
-    </div>
-    
-    <div class="buttons">
-      <button onclick="calculate('add')">+</button>
-      <button onclick="calculate('subtract')">-</button>
-      <button onclick="calculate('multiply')">×</button>
-      <button onclick="calculate('divide')">÷</button>
-      <button onclick="clearCalculator()" class="clear">Clear</button>
-    </div>
-    
-    <div id="result" class="result">
-      Result will appear here
-    </div>
-  </div>
+<!-- @format -->
 
-  <script src="starter-script.js"></script>
-</body>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lab 14 - JavaScript Calculator</title>
+    <link rel="stylesheet" href="starter-styles.css" />
+    <script src="starter-script.js"></script>
+  </head>
+  <body>
+    <div class="calculator">
+      <h1>JavaScript Calculator</h1>
+
+      <div class="inputs">
+        <input type="number" id="num1" placeholder="First number" />
+        <input type="number" id="num2" placeholder="Second number" />
+      </div>
+
+      <div class="buttons">
+        <button onclick="calculate('add')">+</button>
+        <button onclick="calculate('subtract')">-</button>
+        <button onclick="calculate('multiply')">×</button>
+        <button onclick="calculate('divide')">÷</button>
+        <button onclick="clearCalculator()" class="clear">Clear</button>
+      </div>
+
+      <div id="result" class="result">Result will appear here</div>
+    </div>
+
+    <script src="starter-script.js"></script>
+  </body>
 </html>
