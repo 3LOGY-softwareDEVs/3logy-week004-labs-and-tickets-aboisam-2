@@ -21,18 +21,59 @@
     <section class="component">
       <h2>Component 2: Card Flip</h2>
       <div class="flip-card">
-        <!-- TODO: Add flip card inner structure -->
-        <!-- Hint: You need .flip-card-inner, .flip-card-front, .flip-card-back -->
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <h3>🎨 Front Side</h3>
+            <p>Hover to flip this card!</p>
+            <p class="hint">Go ahead, try it →</p>
+          </div>
+          <div class="flip-card-back">
+            <h3>🎨 Back Side</h3>
+            <p>This is the back of the card!</p>
+          </div>
+        </div>
+
       </div>
     </section>
     
     <!-- Component 3: Dropdown or Modal -->
     <section class="component">
       <h2>Component 3: Dropdown/Modal</h2>
-      <!-- TODO: Add your chosen component (dropdown or modal) -->
+     <button class="btn btn-primary" onclick="openModal()">Open Modal</button>
+      <div class="modal-overlay" id="modal">
+        <div class="modal">
+          <button class="modal-close" onclick="closeModal()">×</button>
+          <h3>Modal Title</h3>
+          <p>This modal uses fixed positioning, z-index layering, and a semi-transparent overlay. It slides in with a CSS animation!</p>
+          <button class="btn btn-primary" onclick="closeModal()">Got it!</button>
+        </div>
+      </div>
     </section>
   </div>
-  
-  <script src="starter-script.js"></script> <!-- If using modal -->
+  <script>
+    function openModal() {
+      document.getElementById('modal').classList.add('active');
+    }
+    
+    function closeModal() {
+      document.getElementById('modal').classList.remove('active');
+    }
+    
+    // Close modal on overlay click
+    document.getElementById('modal').addEventListener('click', function(e) {
+      if (e.target === this) {
+        closeModal();
+      }
+    });
+    
+    // Close modal on ESC key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        closeModal();
+      }
+    });
+  </script>
+
+  </script> <!-- If using modal -->
 </body>
 </html>
