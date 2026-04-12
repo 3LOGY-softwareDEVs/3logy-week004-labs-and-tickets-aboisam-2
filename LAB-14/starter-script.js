@@ -1,52 +1,110 @@
-// Get references to DOM elements
-const num1Input = document.getElementById('num1');
-const num2Input = document.getElementById('num2');
-const resultDiv = document.getElementById('result');
+/** @format */
 
-// TODO: Create add function
-function add(a, b) {
-  // Your code here
+// ---------- DOM ----------
+const num1 = document.getElementById("num1");
+const num2 = document.getElementById("num2");
+const resultEl = document.getElementById("result");
+const historyList = document.getElementById("historyList");
+
+// ---------- STATE ----------
+let history = [];
+const MAX_HISTORY = 5;
+
+// ---------- OPERATIONS ----------
+const OPERATIONS = {
+  add: { symbol: "+", fn: (a, b) => a + b },
+  subtract: { symbol: "-", fn: (a, b) => a - b },
+  multiply: { symbol: "×", fn: (a, b) => a * b },
+  divide: {
+    symbol: "÷",
+    fn: (a, b) => {
+      if (b === 0) throw new Error("Cannot divide by zero");
+      return a / b;
+    },
+  },
+  power: {
+    symbol: "^",
+    fn: (a, b) => Math.pow(a, b),
+  },
+};
+
+// ---------- HELPERS ----------
+function getInputs() {
+  const v1 = num1.value.trim();
+  const v2 = num2.value.trim();
+
+  if (!v1 || !v2) throw new Error("Please enter both numbers");
+
+  const a = Number(v1);
+  const b = Number(v2);
+
+  if (isNaN(a) || isNaN(b)) {
+    throw new Error("Please enter valid numbers");
+  }
+
+  return { a, b };
 }
 
-// TODO: Create subtract function
-function subtract(a, b) {
-  // Your code here
+function formatResult(value) {
+  return Number.isInteger(value) ? value : Number(value.toFixed(4));
 }
 
-// TODO: Create multiply function
-function multiply(a, b) {
-  // Your code here
+function showResult(message, type = "") {
+  resultEl.textContent = message;
+  resultEl.className = `result ${type}`;
 }
 
-// TODO: Create divide function (check for division by zero!)
-function divide(a, b) {
-  // Your code here
-  // Hint: if (b === 0) { return error }
+// ---------- CORE ----------
+function calculate(type) {
+  try {
+    const { a, b } = getInputs();
+
+    const op = OPERATIONS[type];
+    if (!op) throw new Error("Invalid operation");
+
+    const raw = op.fn(a, b);
+    const result = formatResult(raw);
+
+    showResult(`Result: ${result}`, "success");
+
+    addToHistory(`${a} ${op.symbol} ${b}`, result);
+  } catch (err) {
+    showResult(err.message, "error");
+  }
 }
 
-// TODO: Create calculate function
-function calculate(operation) {
-  // 1. Get values from inputs
-  // 2. Convert to numbers
-  // 3. Call appropriate function based on operation
-  // 4. Display result
-  
-  // Hints:
-  // const a = Number(num1Input.value);
-  // const b = Number(num2Input.value);
-  // 
-  // if (operation === 'add') {
-  //   result = add(a, b);
-  // } else if ...
-  //
-  // resultDiv.textContent = `Result: ${result}`;
+// ---------- HISTORY ----------
+function addToHistory(expression, result) {
+  const entry = `${expression} = ${result}`;
+
+  history.unshift(entry);
+
+  if (history.length > MAX_HISTORY) {
+    history.pop();
+  }
+
+  renderHistory();
 }
 
-// TODO: Create clearCalculator function
+function renderHistory() {
+  historyList.innerHTML = history.map((item) => `<li>${item}</li>`).join("");
+}
+
+// ---------- ACTIONS ----------
 function clearCalculator() {
-  // 1. Clear both inputs
-  // 2. Reset result display
+  num1.value = "";
+  num2.value = "";
+  showResult("Result will appear here");
+  num1.focus();
 }
 
-// Log to console that script is loaded
-console.log('Calculator loaded!');
+// ---------- EVENTS ----------
+document.querySelectorAll("[data-op]").forEach((btn) => {
+  btn.addEventListener("click", () => {
+    calculate(btn.dataset.op);
+  });
+});
+
+// ---------- INIT ----------
+showResult("Result will appear here");
+console.log("Calculator ready!");

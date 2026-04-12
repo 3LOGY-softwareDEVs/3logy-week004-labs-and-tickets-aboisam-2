@@ -1,29 +1,42 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lab 15 - To-Do List</title>
-  <link rel="stylesheet" href="starter-styles.css">
-</head>
-<body>
-  <div class="container">
-    <h1>My To-Do List</h1>
-    
-    <div class="input-section">
-      <input 
-        type="text" 
-        id="taskInput" 
-        placeholder="Enter a new task..."
-      >
-      <button id="addBtn" onclick="addTask()">Add Task</button>
-    </div>
-    
-    <ul id="taskList">
-      <!-- Tasks will be added here dynamically -->
-    </ul>
-  </div>
+<!-- @format -->
 
-  <script src="starter-script.js"></script>
-</body>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Todo List App</title>
+    <link rel="stylesheet" href="starter-styles.css" />
+    <script src="starter-script.js" defer></script>
+  </head>
+
+  <body>
+    <header class="header">
+      <h1>To-Do List</h1>
+      <p>Organize your daily activities</p>
+    </header>
+
+    <main class="app">
+      <!-- Add Task -->
+      <section class="task-input">
+        <input type="text" id="taskInput" placeholder="Add a new task..." />
+        <button id="addTaskButton">Add</button>
+      </section>
+
+      <!-- Filters -->
+      <section class="filters">
+        <button data-filter="all" class="active">All</button>
+        <button data-filter="active">Active</button>
+        <button data-filter="completed">Completed</button>
+      </section>
+
+      <!-- Task List -->
+      <ul id="taskList"></ul>
+
+      <!-- Actions -->
+      <section class="actions">
+        <button id="clearCompleted">Clear Completed</button>
+      </section>
+    </main>
+  </body>
 </html>

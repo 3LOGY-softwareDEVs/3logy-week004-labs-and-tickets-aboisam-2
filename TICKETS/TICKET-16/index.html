@@ -1,0 +1,74 @@
+<!-- @format -->
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Study Helper — TICKET-16</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app">
+      <div class="header">
+        <h1>📚 Study Helper</h1>
+        <p>Add cards, quiz yourself, track your progress.</p>
+      </div>
+
+      <div class="stats-row">
+        <div class="stat">
+          <div class="stat-label">Total cards</div>
+          <div class="stat-value" id="stat-total">0</div>
+        </div>
+        <div class="stat">
+          <div class="stat-label">Mastered</div>
+          <div class="stat-value" id="stat-mastered">0</div>
+        </div>
+        <div class="stat">
+          <div class="stat-label">Progress</div>
+          <div class="stat-value" id="stat-pct">0%</div>
+        </div>
+      </div>
+
+      <div class="progress-wrap">
+        <div class="progress-fill" id="progress-fill" style="width: 0%"></div>
+      </div>
+
+      <div class="tabs">
+        <button class="tab active" id="tab-cards" onclick="switchTab('cards')">
+          My Cards
+        </button>
+        <button class="tab" id="tab-quiz" onclick="switchTab('quiz')">
+          Quiz Mode
+        </button>
+      </div>
+
+      <!-- CARDS PANEL -->
+      <div class="panel active" id="panel-cards">
+        <div class="add-form">
+          <input
+            id="input-term"
+            type="text"
+            placeholder="Term  (e.g. Photosynthesis)"
+            maxlength="200" />
+          <textarea
+            id="input-def"
+            placeholder="Definition  (e.g. The process plants use to convert sunlight into energy...)"></textarea>
+          <div>
+            <button class="btn btn-primary" onclick="addCard()">
+              + Add Card
+            </button>
+          </div>
+        </div>
+        <div class="card-list" id="card-list"></div>
+      </div>
+
+      <!-- QUIZ PANEL -->
+      <div class="panel" id="panel-quiz">
+        <div id="quiz-content"></div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

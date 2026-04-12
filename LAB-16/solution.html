@@ -1,42 +1,44 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lab 16 - Notes App (Solution)</title>
-  <link rel="stylesheet" href="solution-styles.css">
-</head>
-<body>
-  <div class="app">
-    <aside class="sidebar">
-      <h2>📝 My Notes</h2>
-      <button id="new-note">+ New Note</button>
-      <ul id="notes-list"></ul>
-      <div class="note-count" id="note-count">0 notes</div>
-    </aside>
-    
-    <main class="editor">
-      <form id="note-form">
-        <input 
-          type="text" 
-          id="note-title" 
-          placeholder="Note title..."
-          required
-        >
-        <textarea 
-          id="note-content" 
-          placeholder="Note content..."
-          rows="10"
-          required
-        ></textarea>
-        <div class="actions">
-          <button type="submit">Save</button>
-          <button type="button" id="delete-note" class="danger">Delete</button>
-        </div>
-      </form>
-    </main>
-  </div>
+<!-- @format -->
 
-  <script src="solution-script.js"></script>
-</body>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lab 16 - Notes App (Solution)</title>
+    <link rel="stylesheet" href="solution-styles.css" />
+  </head>
+  <body>
+    <div class="app">
+      <aside class="sidebar">
+        <h2>📝 My Notes</h2>
+        <button id="new-note">+ New Note</button>
+        <ul id="notes-list"></ul>
+        <div class="note-count" id="note-count">0 notes</div>
+      </aside>
+
+      <main class="editor">
+        <form id="note-form">
+          <input
+            type="text"
+            id="note-title"
+            placeholder="Note title..."
+            required />
+          <textarea
+            id="note-content"
+            placeholder="Note content..."
+            rows="10"
+            required></textarea>
+          <div class="actions">
+            <button type="submit">Save</button>
+            <button type="button" id="delete-note" class="danger">
+              Delete
+            </button>
+          </div>
+        </form>
+      </main>
+    </div>
+
+    <script src="solution-script.js"></script>
+  </body>
 </html>
