@@ -1,3 +1,5 @@
+/** @format */
+
 * {
   margin: 0;
   padding: 0;
@@ -22,47 +24,48 @@ body {
 h1 {
   text-align: center;
   margin-bottom: 30px;
-  color: #333;
+  color: #4605f7;
 }
 
 form {
   margin-bottom: 30px;
 }
 
-input, textarea {
+input,
+textarea {
   width: 100%;
   padding: 12px;
   margin-bottom: 10px;
   border: 2px solid #ddd;
-  border-radius: 6px;
+  border-radius: 4px;
   font-size: 16px;
 }
 
 textarea {
-  min-height: 100px;
+  min-height: 200px;
   resize: vertical;
 }
 
 button[type="submit"] {
   width: 100%;
   padding: 12px;
-  background: #667eea;
+  background: #0230fd;
   color: white;
   border: none;
   border-radius: 6px;
-  font-size: 16px;
+  font-size: 20px;
   cursor: pointer;
 }
 
 button[type="submit"]:hover {
-  background: #5568d3;
+  background: #0be8f0;
 }
 
 .note {
-  background: #f8f9fa;
+  background: #f4f7fa;
   padding: 20px;
   margin-bottom: 15px;
-  border-radius: 6px;
+  border-radius: 20px;
   position: relative;
 }
 

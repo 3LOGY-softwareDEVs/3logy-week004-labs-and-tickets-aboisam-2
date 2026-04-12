@@ -1,0 +1,498 @@
+/**
+ * ================================================================
+ *    STYLE.CSS — TICKET-16 Study Helper
+ *    ================================================================
+ *    TABLE OF CONTENTS
+ *    1. CSS Variables (:root)
+ *    2. Reset & Base
+ *    3. Layout
+ *    4. Header
+ *    5. Stats Row & Progress Bar
+ *    6. Tabs
+ *    7. Add Form
+ *    8. Buttons
+ *    9. Card List
+ *    10. Empty State
+ *    11. Badge
+ *    12. Quiz Mode
+ *    ================================================================
+ *
+ * @format
+ */
+
+/* ================================================================
+   1. CSS VARIABLES
+   ================================================================ */
+:root {
+  /* Backgrounds */
+  --bg: #f7f8fa;
+  --surface: #ffffff;
+  --surface-alt: #f0f2f5;
+
+  /* Borders */
+  --border: #e2e5ea;
+  --border-focus: #4f63ff;
+
+  /* Text */
+  --text: #1a1d23;
+  --text-muted: #6b7280;
+  --text-hint: #9ca3af;
+
+  /* Brand / Accent */
+  --accent: #4f63ff;
+  --accent-bg: #eef0ff;
+  --accent-text: #2d3db5;
+  --accent-border: #c7cdff;
+
+  /* Success / Green */
+  --green-bg: #dcfce7;
+  --green-text: #14532d;
+  --green-border: #a7f3d0;
+  --green-bar: #16a34a;
+
+  /* Danger / Red */
+  --red-bg: #fee2e2;
+  --red-text: #7f1d1d;
+  --red-border: #fca5a5;
+
+  /* Warning / Amber */
+  --amber-bg: #fef3c7;
+  --amber-text: #78350f;
+  --amber-border: #fcd34d;
+
+  /* Radius */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-full: 9999px;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
+
+  /* Transitions */
+  --transition: 150ms ease;
+}
+
+/* ================================================================
+   2. RESET & BASE
+   ================================================================ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--text);
+  background: var(--bg);
+  min-height: 100vh;
+  padding: 2rem 1rem 4rem;
+}
+
+/* ================================================================
+   3. LAYOUT
+   ================================================================ */
+.app {
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.panel {
+  display: none;
+}
+
+.panel.active {
+  display: block;
+}
+
+/* ================================================================
+   4. HEADER
+   ================================================================ */
+.header {
+  margin-bottom: 1.75rem;
+}
+
+.header h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+
+.header p {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+/* ================================================================
+   5. STATS ROW & PROGRESS BAR
+   ================================================================ */
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.stat {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 14px 16px;
+}
+
+.stat-label {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}
+
+.stat-value {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1;
+}
+
+.progress-wrap {
+  background: var(--surface-alt);
+  border-radius: var(--radius-full);
+  height: 8px;
+  overflow: hidden;
+  margin-bottom: 1.75rem;
+}
+
+.progress-fill {
+  height: 100%;
+  background: var(--green-bar);
+  border-radius: var(--radius-full);
+  transition: width 400ms ease;
+  min-width: 0;
+}
+
+/* ================================================================
+   6. TABS
+   ================================================================ */
+.tabs {
+  display: flex;
+  gap: 4px;
+  background: var(--surface-alt);
+  border-radius: var(--radius-md);
+  padding: 4px;
+  margin-bottom: 1.5rem;
+}
+
+.tab {
+  flex: 1;
+  padding: 9px;
+  border: none;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all var(--transition);
+}
+
+.tab.active {
+  background: var(--surface);
+  color: var(--text);
+  box-shadow: var(--shadow-sm);
+}
+
+/* ================================================================
+   7. ADD FORM
+   ================================================================ */
+.add-form {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1rem;
+  margin-bottom: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.add-form input,
+.add-form textarea {
+  width: 100%;
+  padding: 9px 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--bg);
+  color: var(--text);
+  font-size: 14px;
+  font-family: inherit;
+  outline: none;
+  resize: vertical;
+  transition: border-color var(--transition);
+}
+
+.add-form input:focus,
+.add-form textarea:focus {
+  border-color: var(--border-focus);
+}
+
+.add-form textarea {
+  min-height: 72px;
+}
+
+.add-form input::placeholder,
+.add-form textarea::placeholder {
+  color: var(--text-hint);
+}
+
+/* ================================================================
+   8. BUTTONS
+   ================================================================ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all var(--transition);
+  white-space: nowrap;
+}
+
+.btn:hover {
+  background: var(--surface-alt);
+}
+.btn:active {
+  transform: scale(0.97);
+}
+
+/* Accent / Primary */
+.btn-primary {
+  background: var(--accent-bg);
+  color: var(--accent-text);
+  border-color: var(--accent-border);
+}
+.btn-primary:hover {
+  background: #dde0ff;
+}
+
+/* Success / Green */
+.btn-success {
+  background: var(--green-bg);
+  color: var(--green-text);
+  border-color: var(--green-border);
+}
+.btn-success:hover {
+  background: #bbf7d0;
+}
+
+/* Danger / Red */
+.btn-danger {
+  background: var(--red-bg);
+  color: var(--red-text);
+  border-color: var(--red-border);
+}
+.btn-danger:hover {
+  background: #fecaca;
+}
+
+/* Warning / Amber */
+.btn-warn {
+  background: var(--amber-bg);
+  color: var(--amber-text);
+  border-color: var(--amber-border);
+}
+.btn-warn:hover {
+  background: #fde68a;
+}
+
+/* ================================================================
+   9. CARD LIST
+   ================================================================ */
+.card-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.card-item {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 14px 16px;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  transition: border-color 200ms;
+}
+
+.card-item.mastered {
+  border-color: var(--green-border);
+  background: #f0fdf4;
+}
+
+.card-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.card-term {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.card-def {
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+.card-meta {
+  font-size: 11px;
+  color: var(--text-hint);
+  margin-top: 6px;
+}
+
+.card-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+/* ================================================================
+   10. EMPTY STATE
+   ================================================================ */
+.empty {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: var(--text-muted);
+  font-size: 14px;
+  background: var(--surface);
+  border: 1px dashed var(--border);
+  border-radius: var(--radius-lg);
+}
+
+.empty-icon {
+  font-size: 32px;
+  margin-bottom: 12px;
+}
+
+/* ================================================================
+   11. BADGE
+   ================================================================ */
+.badge {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 500;
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+  background: var(--green-bg);
+  color: var(--green-text);
+  border: 1px solid var(--green-border);
+}
+
+/* ================================================================
+   12. QUIZ MODE
+   ================================================================ */
+.quiz-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 2.5rem 2rem;
+  text-align: center;
+  margin-bottom: 1rem;
+  box-shadow: var(--shadow-md);
+}
+
+.quiz-counter {
+  font-size: 12px;
+  color: var(--text-hint);
+  margin-bottom: 1.25rem;
+}
+
+.quiz-term {
+  font-size: 1.35rem;
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  margin-bottom: 8px;
+}
+
+.quiz-review {
+  font-size: 12px;
+  color: var(--text-hint);
+}
+
+.quiz-answer {
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+  font-size: 15px;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+.quiz-actions {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.quiz-actions .btn {
+  padding: 10px 20px;
+  font-size: 14px;
+}
+
+.quiz-complete,
+.quiz-no-cards {
+  text-align: center;
+  padding: 3rem 1rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+}
+
+.quiz-complete-icon {
+  width: 56px;
+  height: 56px;
+  background: var(--green-bg);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1rem;
+  font-size: 26px;
+}
+
+.quiz-complete h2 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.quiz-complete p,
+.quiz-no-cards p {
+  font-size: 14px;
+  color: var(--text-muted);
+  margin-bottom: 1.5rem;
+}

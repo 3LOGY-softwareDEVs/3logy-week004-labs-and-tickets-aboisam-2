@@ -22,6 +22,10 @@ const OPERATIONS = {
       return a / b;
     },
   },
+  power: {
+    symbol: "^",
+    fn: (a, b) => Math.pow(a, b),
+  },
 };
 
 // ---------- HELPERS ----------
@@ -63,16 +67,22 @@ function calculate(type) {
 
     showResult(`Result: ${result}`, "success");
 
-    addToHistory(`${a} ${op.symbol} ${b} = ${result}`);
+    addToHistory(`${a} ${op.symbol} ${b}`, result);
   } catch (err) {
     showResult(err.message, "error");
   }
 }
 
 // ---------- HISTORY ----------
-function addToHistory(entry) {
+function addToHistory(expression, result) {
+  const entry = `${expression} = ${result}`;
+
   history.unshift(entry);
-  if (history.length > MAX_HISTORY) history.pop();
+
+  if (history.length > MAX_HISTORY) {
+    history.pop();
+  }
+
   renderHistory();
 }
 
@@ -88,7 +98,7 @@ function clearCalculator() {
   num1.focus();
 }
 
-// ---------- OPTIONAL: BUTTON EVENTS (if using buttons) ----------
+// ---------- EVENTS ----------
 document.querySelectorAll("[data-op]").forEach((btn) => {
   btn.addEventListener("click", () => {
     calculate(btn.dataset.op);
@@ -96,4 +106,5 @@ document.querySelectorAll("[data-op]").forEach((btn) => {
 });
 
 // ---------- INIT ----------
+showResult("Result will appear here");
 console.log("Calculator ready!");
